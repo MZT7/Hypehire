@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from "react";
 import ParentMenu from "./ParentMenu";
 import { FaFolder } from "react-icons/fa";
 import { TbSlash } from "react-icons/tb";
@@ -22,7 +23,7 @@ const Content = () => {
     return { label: item?.name, value: item?.id };
   });
 
-  const handleSelect = (e) => {
+  const handleSelect = (e: any) => {
     console.log(e.target.value);
     const { value } = e.target;
 

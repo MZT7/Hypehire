@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
+// import React from "react";
 
 import Entry from "./Entry";
 
@@ -46,7 +46,7 @@ const ParentMenu = () => {
       editNode(
         { ...formData, id: formData.MenuID },
         {
-          onSuccess: (data: any, variables: any, context: any) => {
+          onSuccess: (data: any) => {
             // I will fire second!
             resetMenu();
             console.log("data", data);
@@ -63,7 +63,7 @@ const ParentMenu = () => {
     createSub(
       { ...formData, parent_id: formData.MenuID },
       {
-        onSuccess: (data: any, variables: any, context: any) => {
+        onSuccess: (data: any) => {
           // I will fire second!
           resetMenu();
           console.log("data", data);

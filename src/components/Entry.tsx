@@ -16,12 +16,12 @@ type TEntry = {
   depth?: number;
   id?: number;
 };
-type Tdata = {
-  name: string;
-  depth?: number;
-  parentData?: string;
-  MenuID?: string;
-};
+// type Tdata = {
+//   name: string;
+//   depth?: number;
+//   parentData?: string;
+//   MenuID?: string;
+// };
 
 function Entry({ entry, depth }: { entry: TEntry; depth: number }) {
   // if (!entry.children) return <div>{entry.name}</div>;

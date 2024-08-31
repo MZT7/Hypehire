@@ -18,15 +18,15 @@ import { Label } from "@/components/ui/label";
 //   SelectTrigger,
 //   SelectValue,
 // } from "@/components/ui/select";
-import { useRecoilState } from "recoil";
-import { menuState } from "../state/state";
+// import { useRecoilState } from "recoil";
+// import { menuState } from "../state/state";
 
 type Props = {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
   handleSubmit: () => void;
 };
 const AddParentNode = ({ setModal, handleSubmit }: Props) => {
-  const [formData, setFormData] = useRecoilState(menuState);
+  // const [formData, setFormData] = useRecoilState(menuState);
   return (
     <Card className="fixed top-40 right-[30%] z-50 w-[350px] bg-gray-400 space-y-5 p-3 rounded-lg">
       <CardHeader>

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const useAxios = () => {
   const axiosInstance = axios.create({
-    baseURL: "http://localhost:8000/api",
+    baseURL: "https://hyper.mezudev.site/public/api",
   });
 
   return axiosInstance;
