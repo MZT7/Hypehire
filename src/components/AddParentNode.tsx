@@ -18,15 +18,15 @@ import { Label } from "@/components/ui/label";
 //   SelectTrigger,
 //   SelectValue,
 // } from "@/components/ui/select";
-// import { useRecoilState } from "recoil";
-// import { menuState } from "../state/state";
+import { useRecoilState } from "recoil";
+import { menuState } from "../state/state";
 
 type Props = {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
   handleSubmit: () => void;
 };
 const AddParentNode = ({ setModal, handleSubmit }: Props) => {
-  // const [formData, setFormData] = useRecoilState(menuState);
+  const [formData, setFormData] = useRecoilState(menuState);
   return (
     <Card className="fixed top-40 right-[30%] z-50 w-[350px] bg-gray-400 space-y-5 p-3 rounded-lg">
       <CardHeader>
@@ -38,7 +38,13 @@ const AddParentNode = ({ setModal, handleSubmit }: Props) => {
           <div className="grid items-center w-full gap-4">
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="name">Name</Label>
-              <Input id="name" placeholder="Name of your project" />
+              <Input
+                id="name"
+                placeholder="Name of Node"
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+              />
             </div>
             {/* <div className="flex flex-col space-y-1.5">
               <Label htmlFor="framework">Framework</Label>
@@ -66,7 +72,7 @@ const AddParentNode = ({ setModal, handleSubmit }: Props) => {
           Cancel
         </Button>
         <Button className="p-2 bg-white" onClick={handleSubmit}>
-          Deploy
+          Save
         </Button>
       </CardFooter>
     </Card>

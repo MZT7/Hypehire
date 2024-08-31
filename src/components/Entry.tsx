@@ -103,7 +103,7 @@ function Entry({ entry, depth }: { entry: TEntry; depth: number }) {
         ) : (
           <div className="flex items-center pl-4 gap-x-3">
             {entry.name}
-            <BiRename
+            {/* <BiRename
               size={25}
               onClick={() =>
                 setFormData({
@@ -114,7 +114,7 @@ function Entry({ entry, depth }: { entry: TEntry; depth: number }) {
                   isEdit: true,
                 })
               }
-            />
+            /> */}
             <RiAddCircleFill
               className="cursor-pointer "
               color="#253BFF"

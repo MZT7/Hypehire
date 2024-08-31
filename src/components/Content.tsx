@@ -5,19 +5,28 @@ import { FaFolder } from "react-icons/fa";
 import { TbSlash } from "react-icons/tb";
 import MenuIcon from "../../public/Images/svg/MenuIcon";
 // import CreatableSelect from "react-select/creatable";
-import { useReactQuery } from "../utils/hooks/useReactQueryFn";
+import {
+  useReactMutation,
+  useReactQuery,
+} from "../utils/hooks/useReactQueryFn";
 import AddParentNode from "./AddParentNode";
+import { useRecoilState, useResetRecoilState } from "recoil";
+import { menuState } from "../state/state";
 
 // type Props = {}
 
 const Content = () => {
   const [modal, setModal] = useState(false);
+  const [formData] = useRecoilState(menuState);
+  const resetMenu = useResetRecoilState(menuState);
 
-  const { data: parentData } = useReactQuery(
+  const { data: parentData, refetch } = useReactQuery(
     "getParentMenus",
     "/parent_menus",
     "get"
   );
+
+  const { mutate } = useReactMutation("postMenu", "/menus/create_main", "post");
 
   const parentOptions = parentData?.data?.map((item: any) => {
     return { label: item?.name, value: item?.id };
@@ -34,7 +43,23 @@ const Content = () => {
     }
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    mutate(
+      { ...formData },
+      {
+        onSuccess: (data: any) => {
+          // I will fire second!
+          resetMenu();
+          console.log("data", data);
+          refetch();
+          //  router.push("/auth/login");
+          //  toast({
+          //    description: "Registration Successful.",
+          //  });
+        },
+      }
+    );
+  };
 
   console.log(parentData);
   return (
@@ -55,8 +80,9 @@ const Content = () => {
           onChange={handleSelect}
           // onSelect={handleSelect}
           name="parent"
+          defaultValue={"Select"}
         >
-          <option value={""} hidden selected>
+          <option value={""} hidden defaultValue={"Select"}>
             Select
           </option>
           {parentOptions?.map((option: any) => (
@@ -64,7 +90,9 @@ const Content = () => {
               {option?.label}
             </option>
           ))}
-          <option value={"addKey"}>Add New Menu</option>
+          <option className="text-green-500 " value={"addKey"}>
+            Add New Menu
+          </option>
         </select>
       </div>
       <ParentMenu />
