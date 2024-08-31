@@ -60,7 +60,7 @@ function Entry({ entry, depth }: { entry: TEntry; depth: number }) {
             {/* {entry.name} */}
             <RightClick
               name={entry.name}
-              options={["Edit"]}
+              options={["Rename"]}
               handleClick={() =>
                 setFormData({
                   ...formData,
