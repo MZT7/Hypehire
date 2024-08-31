@@ -7,7 +7,7 @@ import {
 } from "react-icons/ri";
 import { useRecoilState } from "recoil";
 import { menuState } from "../state/state";
-import RightClick from "./RightClick";
+// import RightClick from "./RightClick";
 import { BiRename } from "react-icons/bi";
 // import { menuState } from '../state/state';
 
