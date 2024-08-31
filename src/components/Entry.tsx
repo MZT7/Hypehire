@@ -8,6 +8,7 @@ import {
 import { useRecoilState } from "recoil";
 import { menuState } from "../state/state";
 import RightClick from "./RightClick";
+import { BiRename } from "react-icons/bi";
 // import { menuState } from '../state/state';
 
 type TEntry = {
@@ -39,7 +40,7 @@ function Entry({ entry, depth }: { entry: TEntry; depth: number }) {
       {/* <div className="absolute top-0 left-0 w-px h-full mr-40 transform -translate-x-1/2 bg-black"></div> */}
       <div className="w-full py-2">
         {entry?.children && entry.children.length > 0 ? (
-          <div className="flex">
+          <div className="flex items-center gap-x-3">
             <button
               className="inline-flex items-center justify-center gap-x-3 "
               onClick={() => setIsExpanded(!isExpanded)}
@@ -56,12 +57,25 @@ function Entry({ entry, depth }: { entry: TEntry; depth: number }) {
                     )
                   : entry.children.length > 0 && <RiArrowRightSLine />}
               </span>
+              {entry.name}
             </button>
-            {/* {entry.name} */}
-            <RightClick
+
+            {/* <RightClick
               name={entry.name}
               options={["Rename"]}
               handleClick={() =>
+                setFormData({
+                  ...formData,
+                  depth: entry?.depth as number,
+                  parentData: entry?.name,
+                  MenuID: entry?.id as number,
+                  isEdit: true,
+                })
+              }
+            /> */}
+            <BiRename
+              size={25}
+              onClick={() =>
                 setFormData({
                   ...formData,
                   depth: entry?.depth as number,
@@ -87,8 +101,20 @@ function Entry({ entry, depth }: { entry: TEntry; depth: number }) {
             />
           </div>
         ) : (
-          <div className="flex items-center pl-4">
+          <div className="flex items-center pl-4 gap-x-3">
             {entry.name}
+            <BiRename
+              size={25}
+              onClick={() =>
+                setFormData({
+                  ...formData,
+                  depth: entry?.depth as number,
+                  parentData: entry?.name,
+                  MenuID: entry?.id as number,
+                  isEdit: true,
+                })
+              }
+            />
             <RiAddCircleFill
               className="cursor-pointer "
               color="#253BFF"
