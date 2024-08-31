@@ -31,7 +31,7 @@ const ParentMenu = () => {
     `/menus/${formData.MenuID}`,
     "put"
   );
-  console.log(formData);
+  console.log(import.meta.env.VITE_APP_URL);
 
   // console.log(parentData?.data);
 

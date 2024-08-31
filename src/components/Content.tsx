@@ -29,7 +29,7 @@ const Content = () => {
 
     if (value === "addKey") {
       console.log(value);
-      setModal(true);
+      setModal(!modal);
       return;
     }
   };
@@ -53,8 +53,12 @@ const Content = () => {
         <select
           className="w-1/3 bg-[#F9FAFB] z-10 appearance-none rounded-md p-4"
           onChange={handleSelect}
+          // onSelect={handleSelect}
           name="parent"
         >
+          <option value={""} hidden selected>
+            Select
+          </option>
           {parentOptions?.map((option: any) => (
             <option value={option?.value} key={option?.value}>
               {option?.label}
