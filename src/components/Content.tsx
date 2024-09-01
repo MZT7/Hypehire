@@ -98,7 +98,7 @@ const Content = () => {
           defaultValue={"Select"}
         >
           <option value={""} hidden defaultValue={"Select"}>
-            Select
+            Select Parent Node
           </option>
           {parentOptions?.map((option: any) => (
             <option value={option?.value} key={option?.value}>
