@@ -12,10 +12,19 @@ import { menuState } from "../state/state";
 
 //
 
-const ParentMenu = ({ singleParent }: { singleParent: any[] }) => {
+type PData = {
+  singleParent: any[];
+  refetch: any;
+};
+
+const ParentMenu = ({ singleParent, refetch }: PData) => {
   const [formData, setFormData] = useRecoilState(menuState);
   const resetMenu = useResetRecoilState(menuState);
-  const { data, refetch } = useReactQuery("getMenus", "/menus", "get");
+  const { data, refetch: allFetch } = useReactQuery(
+    "getMenus",
+    "/menus",
+    "get"
+  );
   // const { data: parentData } = useReactQuery(
   //   "getParentMenus",
   //   "/parent_menus",
@@ -51,6 +60,8 @@ const ParentMenu = ({ singleParent }: { singleParent: any[] }) => {
             resetMenu();
             console.log("data", data);
             refetch();
+            allFetch();
+
             //  router.push("/auth/login");
             //  toast({
             //    description: "Registration Successful.",
@@ -68,6 +79,7 @@ const ParentMenu = ({ singleParent }: { singleParent: any[] }) => {
           resetMenu();
           console.log("data", data);
           refetch();
+          allFetch();
           //  router.push("/auth/login");
           //  toast({
           //    description: "Registration Successful.",
@@ -78,8 +90,8 @@ const ParentMenu = ({ singleParent }: { singleParent: any[] }) => {
   };
 
   return (
-    <div className="flex flex-col items-start justify-start w-full lg:flex-row">
-      <div className="flex flex-col w-1/2 gap-y-7 ">
+    <div className="flex flex-col items-start justify-start w-full gap-y-5 lg:flex-row">
+      <div className="flex flex-col w-full lg:w-1/2 gap-y-7 ">
         <div className="flex items-center gap-x-7">
           <button className="bg-[#1D2939] px-7 py-2 rounded-full text-white">
             Expand All
@@ -98,10 +110,10 @@ const ParentMenu = ({ singleParent }: { singleParent: any[] }) => {
               ))}
         </div>
       </div>
-      <div className="flex flex-col w-1/2 gap-y-7">
+      <div className="flex flex-col w-full lg:w-1/2 gap-y-7">
         {formData.isEdit || (
           <div>
-            <div className="w-1/2 space-y-2 ">
+            <div className="space-y-2 lg:w-1/2 ">
               <label className="block">Menu ID</label>
               <input
                 disabled
@@ -111,7 +123,7 @@ const ParentMenu = ({ singleParent }: { singleParent: any[] }) => {
                 className="w-full p-3 bg-[#F9FAFB] rounded-md"
               />
             </div>
-            <div className="w-1/2 space-y-2 ">
+            <div className="space-y-2 lg:w-1/2 ">
               <label className="block">Depth</label>
               <input
                 disabled
@@ -124,7 +136,7 @@ const ParentMenu = ({ singleParent }: { singleParent: any[] }) => {
           </div>
         )}
 
-        <div className="w-1/2 space-y-2 ">
+        <div className="space-y-2 lg:w-1/2 ">
           <label className="block">Parent Data</label>
           <input
             type="text"
@@ -134,7 +146,7 @@ const ParentMenu = ({ singleParent }: { singleParent: any[] }) => {
             onChange={(e) => console.log(e)}
           />
         </div>
-        <div className="w-1/2 space-y-2 ">
+        <div className="space-y-2 lg:w-1/2 ">
           <label className="block">Name</label>
           <input
             type="text"
@@ -148,7 +160,7 @@ const ParentMenu = ({ singleParent }: { singleParent: any[] }) => {
           className="bg-[#253BFF] px-7 py-5 rounded-full w-1/2 text-white"
           onClick={handleSubmit}
         >
-          {formData?.isEdit ? "Edit Node" : "Save"}
+          {formData?.isEdit ? "Edit Node" : "Add Depth"}
         </button>
       </div>
     </div>

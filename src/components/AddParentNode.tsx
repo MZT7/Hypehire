@@ -28,25 +28,26 @@ type Props = {
 const AddParentNode = ({ setModal, handleSubmit }: Props) => {
   const [formData, setFormData] = useRecoilState(menuState);
   return (
-    <Card className="fixed top-40 right-[30%] z-50 w-[350px] bg-gray-400 space-y-5 p-3 rounded-lg">
-      <CardHeader>
-        <CardTitle>Add new Parent Node</CardTitle>
-        {/* <CardDescription>Deploy your new project in one-click.</CardDescription> */}
-      </CardHeader>
-      <CardContent>
-        <form>
-          <div className="grid items-center w-full gap-4">
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="name">Name</Label>
-              <Input
-                id="name"
-                placeholder="Name of Node"
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
-              />
-            </div>
-            {/* <div className="flex flex-col space-y-1.5">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+      <Card className="w-[350px] bg-gray-400 space-y-5 p-3 rounded-lg">
+        <CardHeader>
+          <CardTitle>Add new Parent Node</CardTitle>
+          {/* <CardDescription>Deploy your new project in one-click.</CardDescription> */}
+        </CardHeader>
+        <CardContent>
+          <form>
+            <div className="grid items-center w-full gap-4">
+              <div className="flex flex-col space-y-1.5">
+                <Label htmlFor="name">Name</Label>
+                <Input
+                  id="name"
+                  placeholder="Name of Node"
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                />
+              </div>
+              {/* <div className="flex flex-col space-y-1.5">
               <Label htmlFor="framework">Framework</Label>
               <Select>
                 <SelectTrigger id="framework">
@@ -60,22 +61,23 @@ const AddParentNode = ({ setModal, handleSubmit }: Props) => {
                 </SelectContent>
               </Select>
             </div> */}
-          </div>
-        </form>
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button
-          variant="outline"
-          className="p-2 "
-          onClick={() => setModal(false)}
-        >
-          Cancel
-        </Button>
-        <Button className="p-2 bg-white" onClick={handleSubmit}>
-          Save
-        </Button>
-      </CardFooter>
-    </Card>
+            </div>
+          </form>
+        </CardContent>
+        <CardFooter className="flex justify-between">
+          <Button
+            variant="outline"
+            className="p-2 "
+            onClick={() => setModal(false)}
+          >
+            Cancel
+          </Button>
+          <Button className="p-2 bg-white" onClick={handleSubmit}>
+            Save
+          </Button>
+        </CardFooter>
+      </Card>
+    </div>
   );
 };
 export default AddParentNode;

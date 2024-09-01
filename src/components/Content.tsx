@@ -31,7 +31,7 @@ const Content = () => {
   if (getId > 0) {
     console.log(getId);
   }
-  const { data: singleParent } = useReactIdQuery(
+  const { data: singleParent, refetch: reload } = useReactIdQuery(
     "getParentMenus",
     `/single_parent/${getId}`,
     getId,
@@ -91,7 +91,7 @@ const Content = () => {
       <div className="flex flex-col gap-y-5">
         <h1>Menu</h1>
         <select
-          className="w-1/3 bg-[#F9FAFB] z-10 appearance-none rounded-md p-4"
+          className="lg:w-1/3 bg-[#F9FAFB] z-10 appearance-none rounded-md p-4"
           onChange={handleSelect}
           // onSelect={handleSelect}
           name="parent"
@@ -110,7 +110,7 @@ const Content = () => {
           </option>
         </select>
       </div>
-      <ParentMenu singleParent={singleParent?.data} />
+      <ParentMenu singleParent={singleParent?.data} refetch={reload} />
       {modal && (
         <AddParentNode setModal={setModal} handleSubmit={handleSubmit} />
       )}
