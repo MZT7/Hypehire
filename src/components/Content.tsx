@@ -6,6 +6,7 @@ import { TbSlash } from "react-icons/tb";
 import MenuIcon from "../../public/Images/svg/MenuIcon";
 // import CreatableSelect from "react-select/creatable";
 import {
+  useReactIdQuery,
   useReactMutation,
   useReactQuery,
 } from "../utils/hooks/useReactQueryFn";
@@ -17,12 +18,23 @@ import { menuState } from "../state/state";
 
 const Content = () => {
   const [modal, setModal] = useState(false);
+  const [getId, setGetId] = useState(0);
   const [formData] = useRecoilState(menuState);
   const resetMenu = useResetRecoilState(menuState);
 
   const { data: parentData, refetch } = useReactQuery(
     "getParentMenus",
     "/parent_menus",
+    "get"
+  );
+
+  if (getId > 0) {
+    console.log(getId);
+  }
+  const { data: singleParent } = useReactIdQuery(
+    "getParentMenus",
+    `/single_parent/${getId}`,
+    getId,
     "get"
   );
 
@@ -41,7 +53,10 @@ const Content = () => {
       setModal(!modal);
       return;
     }
+    setGetId(value);
   };
+
+  console.log(getId);
 
   const handleSubmit = async () => {
     mutate(
@@ -95,7 +110,7 @@ const Content = () => {
           </option>
         </select>
       </div>
-      <ParentMenu />
+      <ParentMenu singleParent={singleParent?.data} />
       {modal && (
         <AddParentNode setModal={setModal} handleSubmit={handleSubmit} />
       )}

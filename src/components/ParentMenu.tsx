@@ -12,7 +12,7 @@ import { menuState } from "../state/state";
 
 //
 
-const ParentMenu = () => {
+const ParentMenu = ({ singleParent }: { singleParent: any[] }) => {
   const [formData, setFormData] = useRecoilState(menuState);
   const resetMenu = useResetRecoilState(menuState);
   const { data, refetch } = useReactQuery("getMenus", "/menus", "get");
@@ -31,7 +31,7 @@ const ParentMenu = () => {
     `/menus/${formData.MenuID}`,
     "put"
   );
-  console.log(import.meta.env.VITE_APP_URL);
+  console.log(singleParent);
 
   // console.log(parentData?.data);
 
@@ -89,9 +89,13 @@ const ParentMenu = () => {
           </button>
         </div>
         <div>
-          {data?.data?.map((entry: any, index: any) => (
-            <Entry entry={entry} depth={1} key={entry?.id || index} />
-          ))}
+          {singleParent?.length > 0
+            ? singleParent?.map((entry: any, index: any) => (
+                <Entry entry={entry} depth={1} key={entry?.id || index} />
+              ))
+            : data?.data?.map((entry: any, index: any) => (
+                <Entry entry={entry} depth={1} key={entry?.id || index} />
+              ))}
         </div>
       </div>
       <div className="flex flex-col w-1/2 gap-y-7">
@@ -150,5 +154,4 @@ const ParentMenu = () => {
     </div>
   );
 };
-
 export default ParentMenu;

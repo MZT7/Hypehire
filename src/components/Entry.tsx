@@ -75,6 +75,7 @@ function Entry({ entry, depth }: { entry: TEntry; depth: number }) {
             /> */}
             <BiRename
               size={25}
+              className="cursor-pointer "
               onClick={() =>
                 setFormData({
                   ...formData,

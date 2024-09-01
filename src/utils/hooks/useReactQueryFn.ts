@@ -17,6 +17,21 @@ export const useReactQuery = (
     queryFn: () => instance[method](path),
   });
 };
+export const useReactIdQuery = (
+  key: string,
+  path: string,
+  id: string | number,
+  method: QueryMethod = "get"
+) => {
+  const instance = useAxios();
+
+  return useQuery({
+    queryKey: [key, id],
+    queryFn: () => instance[method](path),
+
+    enabled: typeof id === "number" ? id > 0 : parseInt(id) > 0,
+  });
+};
 export const useReactMutation = (
   key: string,
   path: string,
